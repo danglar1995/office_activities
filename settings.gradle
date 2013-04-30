@@ -1,0 +1,6 @@
+rootProject.name = 'office_activities'
+
+include 'serverApp'
+include 'main-module:server'
+include 'main-module:common'
+include 'main-module:web'

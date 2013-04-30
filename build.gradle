@@ -1,0 +1,34 @@
+allprojects {
+  apply plugin: 'java'
+  apply plugin: 'idea'
+
+  sourceCompatibility = 1.7
+
+  repositories {
+    mavenCentral()
+  }
+
+  tasks.withType(Compile) {
+    options.encoding = 'utf-8'
+  }
+
+  sourceSets {
+    main {
+      resources.srcDirs = ['src/main/java', 'src/main/resources']
+    }
+  }
+  
+  def uniqProjectName = project.path.substring(1).replace(':', '-');
+  uniqProjectName = uniqProjectName ? uniqProjectName : "main"
+
+  jar {
+    baseName = uniqProjectName
+  }
+}
+
+dependencies {
+  compile project(':serverApp');
+}
+
+task jettyRun(dependsOn: ':serverApp:jettyRun') {}
+task jettyStop(dependsOn: ':serverApp:jettyStop') {}

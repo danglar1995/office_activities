@@ -1,0 +1,6 @@
+dependencies {
+  compile project(':main-module:common')
+  
+  compile group: 'javax.servlet', name: 'servlet-api', version: '2.5'
+  compile group: 'org.springframework', name: 'spring-webmvc', version: '3.1.3.RELEASE'
+}
