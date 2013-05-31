@@ -4,6 +4,8 @@ import com.bftcom.activities.common.dto.SysUserDto;
 import com.bftcom.activities.common.handler.SysUserHandler;
 import com.bftcom.activities.server.dao.Dao;
 import com.bftcom.activities.server.dao.SysUserDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -20,6 +22,8 @@ import java.util.Properties;
 
 @Component
 public class SysUserHandlerImpl extends BaseHandler implements SysUserHandler {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(SysUserHandlerImpl.class);
 
   @Autowired
   private SysUserDao dao;
@@ -60,6 +64,7 @@ public class SysUserHandlerImpl extends BaseHandler implements SysUserHandler {
       msg.setSentDate(new Date());
       Transport.send(msg);
     } catch (MessagingException e) {
+      LOGGER.error("", e);
       throw new RuntimeException("Почтовый сервер не доступен", e);
     }
   }
