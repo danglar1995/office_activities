@@ -11,6 +11,7 @@
           <th><label for="userFullName">Ф.И.О:</label></th>
           <td>
             <form:input path="userFullName" size="50" maxlength="100" id="userFullName"/>
+            <form:errors path="userFullName"/>
           </td>
         </tr>
 
@@ -29,6 +30,7 @@
           <th><label for="email">Почта:</label></th>
           <td>
             <form:input path="email" size="50" maxlength="30" id="email"/>
+            <form:errors path="email"/>
           </td>
         </tr>
 
@@ -36,6 +38,7 @@
           <th><label for="userName">Логин:</label></th>
           <td>
             <form:input path="userName" size="50" maxlength="15" id="userName"/>
+            <form:errors path="userName"/>
           </td>
         </tr>
 
@@ -43,6 +46,7 @@
           <th><label for="password">Пароль:</label></th>
           <td>
             <form:password path="password" size="50" maxlength="20" id="password"/>
+            <form:errors path="password"/>
           </td>
         </tr>
 

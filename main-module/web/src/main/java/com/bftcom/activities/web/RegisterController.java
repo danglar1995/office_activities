@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @Controller
 public class RegisterController {
@@ -31,7 +33,11 @@ public class RegisterController {
   }
 
   @RequestMapping(value="/register", method=RequestMethod.POST)
-  public String register(ModelMap model, Register registerObj) {
+  public String register(ModelMap model, @Valid Register registerObj, BindingResult result) {
+    if (result.hasErrors()) {
+      return "register";
+    }
+
     AppObjDict dict = AppObjDict.getInstance();
     AppObj sysUserObj = dict.getAppObj("sysUser");
 
