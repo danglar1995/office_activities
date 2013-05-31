@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+  <changeSet author="a.sharipov" id="1" context="nodiff">
+    <comment>
+      Если база поддерживает sequence, то hibernate его использует по умолчанию. Один на все таблицы.
+    </comment>
+    <createSequence sequenceName="hibernate_sequence"/>
+  </changeSet>
+
+  <changeSet author="a.sharipov" id="2">
+    <createTable tableName="SysUser">
+      <column name="id" autoIncrement="true" type="BIGINT">
+        <constraints nullable="false" primaryKey="true"/>
+      </column>
+      <column name="full_name" type="VARCHAR(100)"/>
+      <column name="department" type="INT"/>
+      <column name="email" type="VARCHAR(30)"/>
+      <column name="name" type="VARCHAR(15)"/>
+      <column name="password" type="VARCHAR(20)"/>
+    </createTable>
+    <addUniqueConstraint tableName="SysUser"
+                         columnNames="name"
+                         constraintName="uq_name"/>
+  </changeSet>
+
+</databaseChangeLog>

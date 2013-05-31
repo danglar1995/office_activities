@@ -1,3 +1,5 @@
+apply from: 'liquibase.gradle'
+
 allprojects {
   apply plugin: 'java'
   apply plugin: 'idea'
@@ -23,6 +25,20 @@ allprojects {
 
   jar {
     baseName = uniqProjectName
+  }
+}
+
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+
+  dependencies {
+    classpath 'com.augusttechgroup:gradle-liquibase-plugin:0.7'
+    classpath ('org.firebirdsql.jdbc:jaybird:2.+') {
+      exclude group: 'javax.jms', module: 'jms'
+    }
+    classpath files('main-module/db/src/main/resources/') // нужно для поиска liquibase-скриптов (changelogs)
   }
 }
 
