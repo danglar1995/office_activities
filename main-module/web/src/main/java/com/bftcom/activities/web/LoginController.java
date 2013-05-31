@@ -24,5 +24,4 @@ public class LoginController {
   public String goToRegister(Login loginObj) {
     return "redirect:register?" + "userNameParam=" + loginObj.getUserName();
   }
-
 }

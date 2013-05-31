@@ -3,7 +3,10 @@ def hibernateVersion = '4.1.9.Final'
 
 dependencies {
   compile project(':main-module:common')
-  
+
+  // эту библиотеку необходимо объявить раньше чем jaybird чтобы избежать конфликта
+  compile group: 'com.sun.mail', name: 'javax.mail', version: '1.5.0'
+
   compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.+'
   compile ("org.firebirdsql.jdbc:jaybird:2.+") {
     exclude group: 'javax.jms', module: 'jms'

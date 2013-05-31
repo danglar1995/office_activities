@@ -32,7 +32,8 @@ public class BaseDao implements Dao {
 
   @Override
   public <D extends Dto> D load(Class<D> dtoClass, Long id) {
-    return null;
+    Object entity = getSession().load(entityClass, id);
+    return BeanMapper.map(entity, dtoClass);
   }
 
   @Override
