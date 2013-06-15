@@ -1,9 +1,9 @@
 package com.bftcom.activities.server.entity;
 
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @javax.persistence.Entity(name = "SysUser")
 public class SysUserEntity extends BaseEntity {
@@ -13,6 +13,8 @@ public class SysUserEntity extends BaseEntity {
   private String email;
   private String userName;
   private String password;
+
+  private AuthorityEntity authority;
 
   @Column(name = "FULL_NAME", nullable = false, length = 100)
   public String getUserFullName() {
@@ -57,5 +59,20 @@ public class SysUserEntity extends BaseEntity {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  @OneToOne
+  @JoinColumn(name = "authority_id")
+  public AuthorityEntity getAuthority() {
+    return authority;
+  }
+
+  public void setAuthority(AuthorityEntity authority) {
+    this.authority = authority;
+  }
+
+  @Transient
+  public String getAuthorityName() {
+    return (authority != null) ? authority.getAuthority() : null;
   }
 }

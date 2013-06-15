@@ -41,8 +41,14 @@ public class SysUserHandlerImpl extends BaseHandler implements SysUserHandler {
 
   @Transactional
   @Override
+  public SysUserDto loadByName(String userName) {
+    return (SysUserDto) dao.loadByName(getDtoClass(), userName);
+  }
+
+  @Transactional
+  @Override
   public void sendPassword(String userName) {
-    SysUserDto userDto = (SysUserDto) dao.loadByName(getDtoClass(), userName);
+    SysUserDto userDto = loadByName(userName);
     send(userName, userDto.getEmail(), userDto.getPassword());
   }
 

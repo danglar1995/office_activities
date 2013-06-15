@@ -15,11 +15,6 @@ public class LoginController {
     return "login";
   }
 
-  @RequestMapping(params="signUp", method=RequestMethod.POST)
-  public String signUp(Login loginObj) {
-    return "redirect:index";
-  }
-
   @RequestMapping(params="register", method=RequestMethod.POST)
   public String goToRegister(Login loginObj) {
     return "redirect:register?" + "userNameParam=" + loginObj.getUserName();

@@ -1,0 +1,23 @@
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns="http://www.springframework.org/schema/security"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+          http://www.springframework.org/schema/security
+          http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+  <http>
+    <intercept-url pattern="/index*" access="ROLE_LISTENER, ROLE_TEACHER, ROLE_ADMIN"/>
+
+    <form-login login-page="/login" authentication-failure-url="/login?error=true"
+                username-parameter="userName" password-parameter="password" default-target-url="/index"/>
+
+    <logout logout-success-url="/login"/>
+  </http>
+
+  <authentication-manager>
+    <authentication-provider user-service-ref = "userDetailsService">
+        <!--<password-encoder hash="md5"/>-->
+    </authentication-provider>
+  </authentication-manager>
+</beans:beans>
